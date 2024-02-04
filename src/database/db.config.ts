@@ -9,7 +9,7 @@ const dbConfig = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   waitForConnections: true,
-  connectionLImit: 10,
+  connectionLimit: 10,
 };
 
 const pool = mysql.createPool(dbConfig);
@@ -22,7 +22,7 @@ export async function query(sql: string, params: any[]) {
     conn.release();
     return result;
   } catch (error) {
-    console.log('Hubo un error al crear la conexion');
-    return error;
+    console.log('Hubo un error al crear la conexion', error);
+    throw error;
   }
 }
